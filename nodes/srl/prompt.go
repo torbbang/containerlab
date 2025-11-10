@@ -23,9 +23,7 @@ func (n *srl) setCustomPrompt(tplData *srlTemplateData) {
 	prompt, err := n.currentPrompt(context.Background())
 	if err != nil {
 		log.Errorf("failed to get current prompt: %v", err)
-
 		tplData.EnableCustomPrompt = false
-
 		return
 	}
 
@@ -54,8 +52,7 @@ func getPrompt(s string) (string, error) {
 	re := regexp.MustCompile(`value\s+=\s+"(.+)"`)
 	v := re.FindStringSubmatch(s)
 
-	const promptMatchGroups = 2
-	if len(v) != promptMatchGroups {
+	if len(v) != 2 {
 		return "", fmt.Errorf("failed to parse prompt from string: %s", s)
 	}
 
